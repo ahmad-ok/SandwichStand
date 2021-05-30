@@ -11,4 +11,7 @@
     <string name="cancel_order_button_text">Cancel Order</string>
     <string name="save_order_button">Save Order</string>
     <string name="sandwich_status_hint">Display message to user</string>
+    <string name="display_message">Hello, %1$s your order has been sent.
+              Please wait till Rachel prepares your sandwich</string>
+    <string name="display_message_default">Hi! Click \'Order Button\' in order to order a sandwich</string>
 </resources>
