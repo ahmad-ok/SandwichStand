@@ -51,13 +51,14 @@ class MainActivity : AppCompatActivity() {
     var placeOrderButton : Button? = null
     var editOrderButton : Button? = null
 
-    val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result->
+    private val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result->
         if(result.resultCode == Activity.RESULT_OK){
             val data: Intent ? = result.data
             val userName : String? = data?.getStringExtra("username")
             displayMessageTextView?.text = getString(R.string.display_message, userName)
             placeOrderButton?.isEnabled = false
             editOrderButton?.isEnabled = true
+            Log.i("stuff", "resultLauncher: order : ${placeOrderButton?.isEnabled}, ${editOrderButton?.isEnabled}")
         }
         else{
             displayMessageTextView?.text = getString(R.string.display_message_default)
