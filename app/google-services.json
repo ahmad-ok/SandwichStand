@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "874812390925",
+    "project_id": "sandwichdude-6abd9",
+    "storage_bucket": "sandwichdude-6abd9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:874812390925:android:03b8a5c20c34703098df44",
+        "android_client_info": {
+          "package_name": "com.ahmadok.sandwichstand"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "874812390925-5t4n182cuomkhleubctgsj8b2u37g3jl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCc1TbYvVUk7QxeP2eqVe40yaz_t6h2YGE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "874812390925-5t4n182cuomkhleubctgsj8b2u37g3jl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:874812390925:android:e1b8934e12fb35bc98df44",
+        "android_client_info": {
+          "package_name": "com.example.SandwichStand"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "874812390925-5t4n182cuomkhleubctgsj8b2u37g3jl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCc1TbYvVUk7QxeP2eqVe40yaz_t6h2YGE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "874812390925-5t4n182cuomkhleubctgsj8b2u37g3jl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">SandwichStand</string>
+    <string name="order">Place Order</string>
+    <string name="edit_order">Edit Order</string>
+    <string name="welcome_text">Welcome, place or edit existing order below!</string>
+    <string name="order_details">Enter order details below!</string>
+    <string name="want_tahini">Would you like tahini on your sandwich?</string>
+    <string name="customer_name">Customer Name:</string>
+    <string name="num_pickles">Number of Pickles (0–10):</string>
+    <string name="hummus_text">Would you like hummus on your sandwich?</string>
+    <string name="cancel_order_button_text">Cancel Order</string>
+    <string name="save_order_button">Save Order</string>
+    <string name="sandwich_status_hint">Display message to user</string>
+</resources>
