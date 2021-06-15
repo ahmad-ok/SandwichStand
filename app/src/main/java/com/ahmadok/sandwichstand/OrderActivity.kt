@@ -76,7 +76,7 @@ class OrderActivity : AppCompatActivity() {
                 val pickleNum = numPickles.text.toString().toInt()
                 val order = SandwichOrder(
                     UUID.randomUUID().toString(), customerName, pickleNum,
-                    wantsHummusCheckbox.isChecked, wantsTahiniCheckbox.isChecked, Status.Waiting
+                    wantsHummusCheckbox.isChecked, wantsTahiniCheckbox.isChecked, Status.waiting
                 )
                 resultIntent.putExtra("order", gson.toJson(order))
                 setResult(Activity.RESULT_OK, resultIntent)
