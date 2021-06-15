@@ -9,6 +9,9 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.gson.Gson
+import org.w3c.dom.Text
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -47,36 +50,57 @@ class MainActivity : AppCompatActivity() {
 //    companion object {
 //        private const val TAG = "MainActivity"
 //    }
-    var displayMessageTextView : TextView? = null
-    var placeOrderButton : Button? = null
-    var editOrderButton : Button? = null
 
-    private val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result->
-        if(result.resultCode == Activity.RESULT_OK){
-            val data: Intent ? = result.data
-            val userName : String? = data?.getStringExtra("username")
-            displayMessageTextView?.text = getString(R.string.display_message, userName)
-            placeOrderButton?.isEnabled = false
-            editOrderButton?.isEnabled = true
-            Log.i("stuff", "resultLauncher: order : ${placeOrderButton?.isEnabled}, ${editOrderButton?.isEnabled}")
+    var enableEditButton = false
+    var enablePlaceOrderButton = true
+    var displayMessageText = "Hi! Click 'Order Button' in order to order a sandwich"
+    var currOrder: SandwichOrder? = null
+    var lastUsedName : String? = null
+
+    private val resultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val data: Intent? = result.data
+                val gson = Gson()
+                currOrder = gson.fromJson(data?.getStringExtra("order"),SandwichOrder::class.java)
+                enableEditButton = true
+                enablePlaceOrderButton = false
+            }
         }
-        else{
-            displayMessageTextView?.text = getString(R.string.display_message_default)
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val editOrderButton: Button = findViewById(R.id.editOrderButton)
         val placeOrderButton: Button = findViewById(R.id.placeOrderButton)
-        displayMessageTextView = findViewById(R.id.displayMessageTextView)
-        editOrderButton.isEnabled = false
 
         placeOrderButton.setOnClickListener {
             val intent = Intent(this, PlaceOrderActivity::class.java)
             resultLauncher.launch(intent)
         }
+    }
+
+    override fun onResume() {
+        val editOrderButton: Button = findViewById(R.id.editOrderButton)
+        val placeOrderButton: Button = findViewById(R.id.placeOrderButton)
+        val displayMessageTextView: TextView = findViewById(R.id.displayMessageTextView)
+
+
+        displayMessageTextView.text = displayMessageText
+
+        if(currOrder != null){
+            val db = FirebaseFirestore.getInstance()
+            db.collection("order").add(currOrder!!).addOnSuccessListener {
+                displayMessageTextView.text = getString(R.string.display_message, currOrder!!.customerName)
+                placeOrderButton.isEnabled = enablePlaceOrderButton
+                editOrderButton.isEnabled = enableEditButton
+            }.addOnFailureListener {
+                displayMessageTextView.text = getString(R.string.order_fail_msg)
+            }
+
+        }
+        super.onResume()
+
+
     }
 
 }

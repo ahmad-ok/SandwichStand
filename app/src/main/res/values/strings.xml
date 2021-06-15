@@ -14,4 +14,5 @@
     <string name="display_message">Hello, %1$s your order has been sent.
               Please wait till Rachel prepares your sandwich</string>
     <string name="display_message_default">Hi! Click \'Order Button\' in order to order a sandwich</string>
+    <string name="order_fail_msg">Sending order failed :( , please try again later</string>
 </resources>
