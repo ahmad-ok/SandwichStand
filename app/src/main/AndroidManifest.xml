@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".PlaceOrderActivity"/>
+        <activity android:name=".OrderActivity"/>
     </application>
 
 </manifest>

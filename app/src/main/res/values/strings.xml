@@ -3,7 +3,7 @@
     <string name="order">Place Order</string>
     <string name="edit_order">Edit Order</string>
     <string name="welcome_text">Welcome, place or edit existing order below!</string>
-    <string name="order_details">Enter order details below!</string>
+    <string name="enter_order_details_title">Enter order details below!</string>
     <string name="want_tahini">Would you like tahini on your sandwich?</string>
     <string name="customer_name">Customer Name:</string>
     <string name="num_pickles">Number of Pickles (0–10):</string>
@@ -15,4 +15,6 @@
               Please wait till Rachel prepares your sandwich</string>
     <string name="display_message_default">Hi! Click \'Order Button\' in order to order a sandwich</string>
     <string name="order_fail_msg">Sending order failed :( , please try again later</string>
+    <string name="edit_order_title">Edit Placed Order</string>
+    <string name="confirm_changes_button">Confirm Changes</string>
 </resources>

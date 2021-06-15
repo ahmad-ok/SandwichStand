@@ -3,7 +3,7 @@ enum class Status{
     Waiting, Ready, Done
 }
 data class SandwichOrder(val id: String = "",
-                         val customerName : String = "",
+                         var customerName : String = "",
                          var pickles : Int = 0,
                          var hummus : Boolean = false,
                          var tahini : Boolean = false,
