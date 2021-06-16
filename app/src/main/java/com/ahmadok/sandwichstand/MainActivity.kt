@@ -125,24 +125,27 @@ class MainActivity : AppCompatActivity() {
             val db = FirebaseFirestore.getInstance()
 
             db.collection("order").document(currOrder!!.id).addSnapshotListener { snapshot, e ->
-                Log.i("listener", "onCreate: inside snapshot listener $?.data}")
                 if (e != null) {
                     return@addSnapshotListener
                 }
-                val newStatus : Status = Status.valueOf(snapshot?.data?.get("status") as String)
-                currOrder?.status = newStatus
-                if (newStatus == Status.`in-progress`) {
-                    placeOrderButton.isEnabled = false
-                    editOrderButton.isEnabled = false
-                    sandwichProgressBar.visibility = View.VISIBLE
-                    progressTextView.visibility = View.VISIBLE
+                if(currOrder != null) {
+                    val newStatus: Status = Status.valueOf(snapshot?.data?.get("status") as String)
+                    if (newStatus == Status.`in-progress` && currOrder?.status == Status.waiting) {
+                        placeOrderButton.isEnabled = false
+                        editOrderButton.isEnabled = false
+                        sandwichProgressBar.visibility = View.VISIBLE
+                        progressTextView.visibility = View.VISIBLE
 
-                }
-                else if(newStatus == Status.ready){
-                    placeOrderButton.isEnabled = true
-                    editOrderButton.isEnabled = false
-                    sandwichProgressBar.visibility = View.INVISIBLE
-                    progressTextView.visibility = View.INVISIBLE
+                    } else if (newStatus == Status.ready && currOrder?.status == Status.`in-progress` ) {
+                        currOrder = null
+                        placeOrderButton.isEnabled = true
+                        editOrderButton.isEnabled = false
+                        sandwichProgressBar.visibility = View.INVISIBLE
+                        progressTextView.visibility = View.INVISIBLE
+                        val readyIntent = Intent(this, OrderReadyActivity::class.java)
+                        startActivity(readyIntent)
+                    }
+                    currOrder?.status = newStatus
                 }
             }
 
@@ -165,7 +168,8 @@ class MainActivity : AppCompatActivity() {
 }
 /**
  * Things left to do:
- * 1- improve ui
- * 2- tests?
- * 4- handle changes from database
+ * 1 - improve ui
+ * 2 - tests?
+ * 3 - make app work on rotation
+ * 4 - app saves progress on exit
  */

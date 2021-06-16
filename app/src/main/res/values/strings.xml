@@ -18,4 +18,5 @@
     <string name="edit_order_title">Edit Placed Order</string>
     <string name="confirm_changes_button">Confirm Changes</string>
     <string name="order_in_progress_text">Your Order is In Progress</string>
+    <string name="got_it_button">Got It</string>
 </resources>
