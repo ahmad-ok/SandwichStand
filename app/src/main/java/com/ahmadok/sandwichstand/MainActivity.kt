@@ -21,46 +21,11 @@ import com.google.gson.Gson
 
 class MainActivity : AppCompatActivity() {
 
-
-//    data class TestData(
-//        val name: String = "",
-//        val pass: String = "" /* very secure believe me hahahaha (:*/
-//    )
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_main)
-//
-//        val db = FirebaseFirestore.getInstance()
-//        val data = TestData("Okoosh", "CRFCR")
-//
-//        db.collection("testColl").add(data)
-//            .addOnSuccessListener {
-//                Log.i(TAG, "onCreate: Added a thing idk.... ")
-//            }
-//            .addOnFailureListener {
-//                Log.e(TAG, "onCreate: Failed", it)
-//            }
-//        val uid = "6fE6H4YT0yHdI6p5tqBV"
-//        db.collection("testColl").document(uid).delete()
-//        db.collection("testColl").addSnapshotListener { value, error ->
-//            value!!
-//            for (_val in value.documents) {
-//                val tstData = _val.toObject(TestData::class.java)
-//                Log.i(TAG, "onCreate: Recieved Object: $tstData")
-//            }
-//        }
-//    }
-//
-//    companion object {
-//        private const val TAG = "MainActivity"
-//    }
-
     var enableEditButton = false
     var enablePlaceOrderButton = true
     var displayMessageText = "Hi! Click 'Order Button' in order to order a sandwich"
     var currOrder: SandwichOrder? = null
-    var lastUsedName: String? = null
+    var lastUsedName: String = ""
 
     private val orderSandwichResultLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -68,6 +33,7 @@ class MainActivity : AppCompatActivity() {
                 val data: Intent? = result.data
                 val gson = Gson()
                 currOrder = gson.fromJson(data?.getStringExtra("order"), SandwichOrder::class.java)
+                lastUsedName = currOrder!!.customerName
                 enableEditButton = true
                 enablePlaceOrderButton = false
             }
@@ -79,6 +45,8 @@ class MainActivity : AppCompatActivity() {
                 val gson = Gson()
                 val data: Intent? = result.data
                 currOrder = gson.fromJson(data?.getStringExtra("order"), SandwichOrder::class.java)
+                lastUsedName = currOrder!!.customerName
+
             }
         }
 
@@ -100,6 +68,7 @@ class MainActivity : AppCompatActivity() {
         placeOrderButton.setOnClickListener {
             val intent = Intent(this, OrderActivity::class.java)
             intent.action = "place"
+            intent.putExtra("name", lastUsedName)
             orderSandwichResultLauncher.launch(intent)
         }
 
@@ -168,8 +137,7 @@ class MainActivity : AppCompatActivity() {
 }
 /**
  * Things left to do:
- * 1 - improve ui
- * 2 - tests?
- * 3 - make app work on rotation
- * 4 - app saves progress on exit
+ * - tests?
+ * - make app work on rotation
+ * - app saves progress on exit
  */

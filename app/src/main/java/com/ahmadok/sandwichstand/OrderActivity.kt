@@ -69,6 +69,7 @@ class OrderActivity : AppCompatActivity() {
         else if(intent.action == "place"){
             placeOrderTitle.text = getString(R.string.enter_order_details_title)
             saveOrderButton.text = getString(R.string.save_order_button)
+            customerNameEditText.text = intent.getStringExtra("name")
 
             saveOrderButton.setOnClickListener {
                 val resultIntent = Intent()
