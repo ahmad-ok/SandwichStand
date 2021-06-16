@@ -130,14 +130,5 @@ class MainActivity : AppCompatActivity() {
 
         }
         super.onResume()
-
-
     }
-
 }
-/**
- * Things left to do:
- * - tests?
- * - make app work on rotation
- * - app saves progress on exit
- */
