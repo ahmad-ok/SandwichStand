@@ -8,7 +8,7 @@
     <string name="customer_name">Customer Name:</string>
     <string name="num_pickles">Number of Pickles (0–10):</string>
     <string name="hummus_text">Would you like hummus on your sandwich?</string>
-    <string name="cancel_order_button_text">Cancel Order</string>
+    <string name="cancel_order_button_text">Cancel</string>
     <string name="save_order_button">Save Order</string>
     <string name="sandwich_status_hint">Display message to user</string>
     <string name="display_message">Hello, %1$s your order has been sent.
